@@ -1,0 +1,24 @@
+<mat-card *ngIf="location">
+  <mat-card-header>
+    <mat-card-title>{{ location.name }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ location.type }} in {{ location.dimension }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <p><strong>Type:</strong> {{ location.type }}</p>
+    <p><strong>Dimension:</strong> {{ location.dimension }}</p>
+    
+    <h3>Residents ({{ location.residents.length }}):</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let residentUrl of location.residents">
+        {{ residentUrl | extractIdFromUrl }}
+        <a mat-button 
+           [routerLink]="['/characters', residentUrl | extractIdFromUrl]">
+          View Resident
+        </a>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

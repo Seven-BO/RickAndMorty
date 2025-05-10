@@ -1,0 +1,24 @@
+<mat-card *ngIf="episode">
+  <mat-card-header>
+    <mat-card-title>{{ episode.name }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ episode.episode }} - Aired on {{ episode.air_date }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <p><strong>Episode Code:</strong> {{ episode.episode }}</p>
+    <p><strong>Air Date:</strong> {{ episode.air_date }}</p>
+    
+    <h3>Characters ({{ episode.characters.length }}):</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let characterUrl of episode.characters">
+        Character {{ characterUrl | extractIdFromUrl }}
+        <a mat-button 
+           [routerLink]="['/characters', characterUrl | extractIdFromUrl]">
+          View Character
+        </a>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
